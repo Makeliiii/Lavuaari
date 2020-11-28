@@ -6,7 +6,7 @@ interface SanmakkoOptions {
     token?: string
 }
 
-export default class SanmakkoClient extends AkairoClient {
+export default class LavuaariClient extends AkairoClient {
     public constructor(config: SanmakkoOptions) {
         super({ ownerID: config.ownerID })
         this.token = config.token!
