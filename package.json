@@ -2,11 +2,11 @@
   "name": "soundbot",
   "version": "1.0.0",
   "description": "",
-  "main": "dist/index.ts",
+  "main": "dist/index.js",
   "scripts": {
-    "start": "npm run build && node dist/index.ts",
+    "start": "npm run build && node dist/index.js",
     "build": "rimraf ./dist && tsc",
-    "dev": "ts-node src/index.ts"
+    "dev": "nodemon src/index.ts"
   },
   "author": "Makeli <joel.m.maenpaa@gmail.com>",
   "license": "MIT",
