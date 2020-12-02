@@ -1,7 +1,7 @@
 import { Command } from 'discord-akairo'
 import { Message } from 'discord.js'
 import { join } from 'path'
-import { download } from '../../util/download'
+import { download } from '../util/download'
 import isURL from 'is-url'
 
 export default class DownloadCommand extends Command {
