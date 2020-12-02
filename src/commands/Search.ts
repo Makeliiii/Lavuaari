@@ -26,14 +26,15 @@ export default class SearchCommand extends Command {
 
     public exec(message: Message, { all, filter }: { all: boolean, filter: string }) {
         const folder = join(__dirname, '..', '..', 'downloads')
+        const embed = new MessageEmbed()
 
         if (!all) {
             const files = fs.readdirSync(folder).filter(file => file.includes(filter))
 
             if (!filter) return message.channel.send('Please include a search parameter.')
             if (!files.length) return message.channel.send('No files found!')
-    
-            const embed = new MessageEmbed()
+            
+            embed
                 .setTitle('File(s)')
                 .addField(
                     '\u200B',
@@ -49,7 +50,7 @@ export default class SearchCommand extends Command {
 
             if (!files.length) return message.channel.send('No files found!')
     
-            const embed = new MessageEmbed()
+            embed
                 .setTitle('File(s)')
                 .addField(
                     '\u200B',
