@@ -6,7 +6,7 @@ import fs from 'fs'
 export default class ListCommand extends Command {
     public constructor() {
         super('list', {
-            aliases: ['list'],
+            aliases: ['list', 'l'],
             description: 'List all the memes the bot has downloaded',
             category: 'Memes',
             ratelimit: 1
