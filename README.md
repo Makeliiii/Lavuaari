@@ -9,7 +9,7 @@ A discord bot that downloads your memes (mp4 and wemb) locally and posts them fo
 
 # Install
 Install required packages
-```
+``` shell
 // With npm
 $ npm install
 // Or with yarn
