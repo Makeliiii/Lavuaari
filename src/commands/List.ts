@@ -20,7 +20,7 @@ export default class ListCommand extends Command {
         if (!files.length) return message.channel.send('No files found!')
 
         const embed = new MessageEmbed()
-            .setTitle('Files')
+            .setTitle('File(s)')
             .addField(
                 '\u200B',
                 files.map(file => {
