@@ -39,34 +39,35 @@ export default class DownloadCommand extends Command {
             if (!acceptExt.test(attachment.name!)) return message.channel.send('Only webm and mp4 allowed.')
             if (!name) name = attachment.name!.split('.')[0]!
 
-            // get the file extension
+            // get the file extension and combine the full filename
             const extension = attachment!.name!.split('.').pop()
+            const file = `${name.split(' ').join('_')}.${extension}`
     
             // download file from the attachment url
-            await download(attachment.url, join(__dirname, '..', '..', '..', 'downloads', `${name.split(' ').join('_')}.${extension}`))
+            await download(attachment.url, join(__dirname, '..', '..', 'downloads', file))
+                .then(() => message.channel.send('Download success!'))
+                .catch(err => {
+                    console.log(err)
+                    return message.channel.send(`Ei onnistu: ${err}`)
+                })
+        } else {
+            // again check for some input errors and mutate name
+            if (!isURL(link)) return message.channel.send('Flag --link was used...\nSo provide a link mate!')
+            if (!acceptExt.test(link)) return message.channel.send('Only webm and mp4 allowed.')
+            if (!name) return message.channel.send('Please give a name for links mate!')
+
+            // get the file extension
+            const extension = link.split('.').filter(string => string === 'mp4' || string === 'webm')
+
+            console.log(`Link: ${link},\nName: ${name}\nTest: ${acceptExt.test(link)},\nFile Extension: ${extension}`)
+
+            // download file from link
+            await download(link, join(__dirname, '..', '..', 'downloads', `${name}.${extension}`))
                 .then(() => message.channel.send('Download success!'))
                 .catch(err => {
                     console.log(err)
                     return message.channel.send(`Ei onnistu: ${err}`)
                 })
         }
-
-        // again check for some input errors and mutate name
-        if (!isURL(link)) return message.channel.send('Flag --link was used...\nSo provide a link mate!')
-        if (!acceptExt.test(link)) return message.channel.send('Only webm and mp4 allowed.')
-        if (!name) return message.channel.send('Please give a name for links mate!')
-
-        // get the file extension
-        const extension = link.split('.').filter(string => string === 'mp4' || string === 'webm')
-
-        console.log(`Link: ${link},\nName: ${name}\nTest: ${acceptExt.test(link)},\nFile Extension: ${extension}`)
-
-        // download file from link
-        await download(link, join(__dirname, '..', '..', '..', 'downloads', `${name}.${extension}`))
-            .then(() => message.channel.send('Download success!'))
-            .catch(err => {
-                console.log(err)
-                return message.channel.send(`Ei onnistu: ${err}`)
-            })
     }
 }
