@@ -16,6 +16,9 @@ export default class ListCommand extends Command {
     public exec(message: Message) {
         const folder = join(__dirname, '..', '..', 'downloads')
         const files = fs.readdirSync(folder)
+
+        if (!files.length) return message.channel.send('No files found!')
+
         const embed = new MessageEmbed()
             .setTitle('Files')
             .addField(
