@@ -1,5 +1,5 @@
 # Lavuaari
-A discord bot that downloads your memes (mp4 and wemb) locally and posts them for you!
+A discord bot that downloads your memes (mp4 and wemb) locally and posts them for you! Also my humble attempt at learning TypeScript WEEEEEEE
 
 # Usage
 1. Install Node.js
