@@ -25,15 +25,14 @@ export default class PostCommand extends Command {
         const folder = join(__dirname, '..', '..', 'downloads')
         const filter = name.split(' ').join('_')
         const file = fs.readdirSync(folder).filter(file => file.includes(filter))
+        let filePath
 
         if (!file.length) return message.channel.send('No files found!')
+        if (file.length === 1) {
+            filePath = join(__dirname, '..', '..', 'downloads', file[0])
+            return message.channel.send(`Found a file with parameter ${name}:`, { files: [filePath] })
+        }
 
-        const filePath = join(__dirname, '..', '..', 'downloads', file[0])
-
-        return message.channel.send(`Searched with param ${name}`, {
-            files: [
-                filePath
-            ]
-        })
+        return message.channel.send(`Searched with param ${name}`)
     }
 }
