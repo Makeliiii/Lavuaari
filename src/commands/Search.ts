@@ -29,6 +29,7 @@ export default class SearchCommand extends Command {
         const embed = new MessageEmbed()
 
         if (!all) {
+            filter = filter.split(' ').join('_')
             const files = fs.readdirSync(folder).filter(file => file.includes(filter))
 
             if (!filter) return message.channel.send('Please include a search parameter.')
