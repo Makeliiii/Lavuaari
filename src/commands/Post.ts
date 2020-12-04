@@ -45,7 +45,7 @@ export default class PostCommand extends Command {
             }
 
             // filter function for .awaitMessages
-            const filter = (response: any) => {
+            const filter = (response: any ) => { // don't know if response should be the type of any i'm a monkey
                 return fileNumbers.some(number => number.toString() === response.content.toString())
             }
 
